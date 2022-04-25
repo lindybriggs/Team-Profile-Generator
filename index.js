@@ -1,4 +1,5 @@
 const fs = require('fs');
+const buildCards = require('./content');
 const inquirer = require('inquirer');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -52,7 +53,7 @@ const addManager = () => {
             } else {
 
                 console.log(teamArray)
-                //  writeFile
+                buildCards(teamArray)
             }
         }
         )
@@ -100,13 +101,7 @@ const addEmployee = () => {
             default: false,
         },
     ])
-        // .then(response => {
-        //     console.log(response)
-        //     if (response.confirmAdd) {
-        //         addEmployee()
-        //     } else process.exit()
-        //     // writeFile here instead of exit
-        // })
+
         .then(({ role, name, id, email, github, school, confirmAdd } = addEmployee) => {
             if (role === "Engineer") {
                 teamArray.push(new Engineer(name, id, email, github))
@@ -119,7 +114,7 @@ const addEmployee = () => {
 
             if (confirmAdd) {
                 addEmployee();
-            } else  {} //  writeFile
+            } else { buildCards(teamArray) }
         }
         )
 }
