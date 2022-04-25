@@ -1,5 +1,10 @@
 const fs = require('fs');
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+
+let teamArray = [];
 
 const addManager = () => {
     return inquirer.prompt([
@@ -36,7 +41,21 @@ const addManager = () => {
             default: false,
         },
     ])
-        .then(response => response)
+
+        .then(({ name, id, email, officeNumber, confirmAdd } = addManager) => {
+
+            teamArray.push(new Manager(name, id, email, officeNumber))
+
+            if (confirmAdd) {
+                console.log(teamArray)
+                return addEmployee();
+            } else {
+
+                console.log(teamArray)
+                //  writeFile
+            }
+        }
+        )
 }
 
 const addEmployee = () => {
@@ -81,22 +100,30 @@ const addEmployee = () => {
             default: false,
         },
     ])
-        .then(response => {
-            console.log(response)
-            if (response.confirmAdd) {
-                addEmployee()
-            } else process.exit()
-            // writeFile here instead of exit
-        })
+        // .then(response => {
+        //     console.log(response)
+        //     if (response.confirmAdd) {
+        //         addEmployee()
+        //     } else process.exit()
+        //     // writeFile here instead of exit
+        // })
+        .then(({ role, name, id, email, github, school, confirmAdd } = addEmployee) => {
+            if (role === "Engineer") {
+                teamArray.push(new Engineer(name, id, email, github))
+                console.log(teamArray)
+            } else {
+                teamArray.push(new Intern(name, id, email, school))
+                console.log(teamArray)
+
+            }
+
+            if (confirmAdd) {
+                addEmployee();
+            } else  {} //  writeFile
+        }
+        )
 }
 
-function checkConfirm(response) {
-    console.log(response);
-    if (response.confirmAdd) {
-        return addEmployee()
-    } else return process.exit()
-}
 
 addManager()
-    .then(checkConfirm)
     .catch(err => { console.log(err); });
