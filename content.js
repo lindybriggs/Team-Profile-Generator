@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+// WHEN I am prompted for my team members and their information
+// THEN an HTML file is generated that displays a nicely formatted team roster based on user input
+// setPage is called below
+// String interpolation builds content for html file, and writeFile creates it
 function setPage(producedCards) {
 
     let content = `<!DOCTYPE html>
@@ -41,6 +45,9 @@ ${producedCards}
 
 let cardsArray = [];
 
+// WHEN I click on an email address in the HTML
+// THEN my default email program opens and populates the TO field of the email with the address
+
 function createManagerCard(manager) {
     return `
     <div class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 bg-body rounded">
@@ -56,6 +63,9 @@ function createManagerCard(manager) {
 </div>
     `
 };
+
+// WHEN I click on the GitHub username
+// THEN that GitHub profile opens in a new tab
 
 function createEngineerCard(engineer) {
     return `
@@ -89,6 +99,12 @@ function createInternCard(intern) {
     `
 };
 
+// buildCards(teamArray) called in index.js
+// A for loop runs through teamArray, and calls its getRole function
+// Based on getRole return, corresponding createCard function called
+// Return from that function is added onto cardsArray
+// Finally, that array joins objects and calls setPage
+
 function buildCards(teamArray) {
 
     for (let i = 0; i < teamArray.length; i++) {
@@ -109,5 +125,5 @@ function buildCards(teamArray) {
     let producedCards = cardsArray.join('')
     return setPage(producedCards);
 }
-
+// Exporting so buildCards can be called in another file
 module.exports = buildCards;
