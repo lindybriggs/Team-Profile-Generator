@@ -14,10 +14,11 @@ function setPage(producedCards) {
     <title>Layout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body >
-    <nav class="navbar navbar-light bg-light">
+    <nav id="header" class="navbar">
         <div class="container-fluid justify-content-center">
             <div class="navbar-brand p-2">
                 <h2>Team Profile</h2>
@@ -50,7 +51,7 @@ let cardsArray = [];
 
 function createManagerCard(manager) {
     return `
-    <div class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 bg-body rounded">
+    <div id="card" class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 rounded">
     <div class="card-header">
         <h4 class="px-1 pt-1">${manager.name}</h4>
         <h5 class="px-1">Manager</h5>
@@ -69,7 +70,7 @@ function createManagerCard(manager) {
 
 function createEngineerCard(engineer) {
     return `
-    <div class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 bg-body rounded">
+    <div id="card" class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 rounded">
     <div class="card-header">
         <h4 class="px-1 pt-1">${engineer.name}</h4>
         <h5 class="px-1">Engineer</h5>
@@ -85,7 +86,7 @@ function createEngineerCard(engineer) {
 
 function createInternCard(intern) {
     return `
-    <div class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 bg-body rounded">
+    <div id="card" class="card px-0 py-0 m-2 col-7 col-md-4 col-lg-3 shadow p-3 mb-5 rounded">
     <div class="card-header">
         <h4 class="px-1 pt-1">${intern.name}</h4>
         <h5 class="px-1">Intern</h5>

@@ -54,11 +54,11 @@ const addManager = () => {
             teamArray.push(new Manager(name, id, email, officeNumber))
 
             if (confirmAdd) {
-                console.log(teamArray)
+                // console.log(teamArray)
                 return addEmployee();
             } else {
 
-                console.log(teamArray)
+                console.log("Building your HTML in dist folder...")
                 buildCards(teamArray)
             }
         }
@@ -115,16 +115,19 @@ const addEmployee = () => {
         .then(({ role, name, id, email, github, school, confirmAdd } = addEmployee) => {
             if (role === "Engineer") {
                 teamArray.push(new Engineer(name, id, email, github))
-                console.log(teamArray)
+                // console.log(teamArray)
             } else {
                 teamArray.push(new Intern(name, id, email, school))
-                console.log(teamArray)
+                // console.log(teamArray)
 
             }
 
             if (confirmAdd) {
                 addEmployee();
-            } else { buildCards(teamArray) }
+            } else { 
+                buildCards(teamArray) 
+                console.log("Building your HTML in dist folder...")
+            }
         }
         )
 }
